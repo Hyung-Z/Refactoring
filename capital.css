@@ -9,8 +9,6 @@ main {
     justify-content: center;
 }
 
-
-
 .description, .quest-container, .answer-container {
     text-align: center;
     width : 90vw;
@@ -22,6 +20,7 @@ main {
     max-width: 1000px;
     user-select: none;
 }
+
 
 .quest-container {
     height: 20vh;
@@ -36,6 +35,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    line-height: 2;
+    background-color: white;
 }
 
 

@@ -1,10 +1,16 @@
 const startBtn = document.querySelector(".start");
+const reloadBtn = document.querySelector('.retry');
 const descriptDiv = document.querySelector(".description");
-const answerForm = document.querySelector(".input-form");
+const mainDiv = document.querySelector('main')
 
 startBtn.addEventListener("click", () => {
   descriptDiv.style.display = "none";
 });
+
+reloadBtn.addEventListener('click', () => {
+  descriptDiv.style.display = 'block';
+  mainDiv.style.display = 'none';
+})
 
 let timerInterval;
 
