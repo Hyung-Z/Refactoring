@@ -1,0 +1,109 @@
+h1 {
+    text-align: center;
+    margin-top: 10vh;
+    font-size: 4rem;
+}
+
+
+#carousel-wrapper {
+    width: 85vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+#carousel {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.track {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap : 20px;
+    transition: transform 0.5s ease-in-out;
+    align-items: center;
+    padding: 5px;
+    padding-top: 7vh;
+    padding-bottom: 7vh;
+    overflow-y: visible;
+}
+
+.slide {
+    width: 20%;
+    aspect-ratio: 1;
+    min-width: 70px;
+    max-width: 150px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10%;
+    flex-shrink: 0;
+    overflow: hidden; /* 링크가 둥근 모서리를 삐져나가지 않게 정리 */
+}
+
+.slide a {
+    display: flex; /* 링크 태그 자체를 Flex 컨테이너로 만듦 */
+    width: 100%;
+    height: 100%;
+    background-color: cornsilk;
+
+    /* --- [3] 텍스트 정렬 속성을 여기로 이동 --- */
+    flex-direction: column; 
+    justify-content: space-around; /* 텍스트 간격 조절 */
+    align-items: center; /* 가로(좌우) 가운데 정렬 추가 */
+
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 글자색 상속 (검정) */
+    
+    font-size: 12px;
+    user-select: none;
+}
+
+.slide:hover {
+    transform: scale(1.05);
+}
+
+.nav-btn {
+    position: absolute;
+    border: none;
+    height: 100%;
+    max-height: 180px;
+    min-height: 70px;
+    top: 50%;
+    transform: translateY(-50%); /* 정확한 수직 중앙 정렬 */
+    background-color: transparent;
+    padding: 10px;
+    z-index: 10;
+    font-size: larger;
+}
+
+.prev { left: -30px; }  /* 왼쪽에 딱 붙이기 */
+.next { right: -30px; } /* 오른쪽에 딱 붙이기 */
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.269);
+}
+
+.slide a:hover {
+    background-color: rgb(255, 244, 202);
+}
+
+.mention {
+    text-align: center;
+    margin-bottom: 10vh;
+    height: 15vh;
+}
+
+.hamburger {
+    display: none;
+}
+
+
+@media (min-width:768px) {
+    .slide a{
+        font-size: 20px;
+    }
+}

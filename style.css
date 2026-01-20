@@ -1,0 +1,103 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Jua", sans-serif;
+    background-color: #fff6ec;
+}
+
+header {
+    padding: 10px;
+    font-size: 1.5rem;
+    filter: brightness(1.03);
+    border-bottom: 1px  solid rgb(188, 178, 161);
+    position: relative;
+    display: flex;
+    height: 65px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+header p {
+    margin-inline-start: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header p a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 글자색 상속 (검정) */
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* 막대기 사이 간격 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-top: 10px
+}
+
+.hamburger span {
+  display: block;
+  width: 25px; /* 막대기 길이 */
+  height: 3px; /* 막대기 두께 */
+  background-color: black; /* 색상 */
+  border-radius: 2px;
+}
+
+.hamburger:hover {
+    transform: scale(1.05 )
+}
+
+#ig {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-40%); /* 정확한 수직 중앙 정렬 */
+    display: none;
+}
+
+#ig img {
+    width: 2rem;
+    aspect-ratio: 1;
+}
+
+#ig img:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+}
+
+.back-home, .retry {
+    width: 30px;
+    height: 30px;
+}
+
+.back-home:hover, .retry:hover {
+    scale : 1.1;
+}
+
+.after-game {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    gap:20px;
+}
+
+@media (min-width: 768px) {
+    #ig {
+        display: block;
+    }
+
+    .back-home, .retry {
+    width: 50px;
+    height: 50px;
+}
+}

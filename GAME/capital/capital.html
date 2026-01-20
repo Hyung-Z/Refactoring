@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>수도퀴즈</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/capital.css" />
+    <script src="/Layout/default.js" defer></script>
+    <script type="module" src="./capital.js" defer></script>    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <section class="description">
+        <h1>수도 퀴즈</h1>
+        <div>
+          화면에 보이는 국가명을 보고, 알맞은 정답을 입력하세요. </br>
+        </div>
+        
+        <section class="level">
+          <button class="down">▼</button>
+          <span><span id="levelN">1</span>단계</span>
+          <button class="up">▲</button>
+        </section>
+
+        <section class="level">
+          <button class="down">▼</button>
+          <span><span id="timer">8</span>초</span>
+          <button class="up">▲</button>
+        </section>
+ 
+        <button class="start">START</button>
+      </section>
+    <main>
+      <section class="quest-container">
+        <p class="country-name"></p>
+
+        <div class="flag">
+          
+        </div>
+      </section>
+
+      <section class="answer-container">
+        <p class="timer">
+        </p>
+        <div class="answer-sheet">
+          <form id="input-form">
+            <input id='answer' type="text" autocomplete="off">
+            <button type="submit">Enter</button>
+          </form>
+
+        </div>
+        <div class="after-game">
+          <a href="/"><img class="back-home" src="/asset/Home.png" alt="main"></a>
+          <a href="capital.html"><img class="retry" src="/asset/re.png" alt="retry"></a>
+        </div>
+      </section>
+      
+    </main>
+  </body>
+
+</html>
