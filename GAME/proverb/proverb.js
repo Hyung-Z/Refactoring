@@ -45,14 +45,6 @@ timerUpBtn.addEventListener("click", () => {
   }
 });
 
-function Reset() {
-  mainDiv.style.display = 'flex';  
-  afterGameDiv.style.display ='none';
-  timerDiv.textContent = '';
-  answerDiv.style.display = 'block';
-
-}
-
 startBtn.addEventListener("click", () => {
   Reset();
   inputDiv.focus()
@@ -72,16 +64,24 @@ startBtn.addEventListener("click", () => {
 });
 
 fetchdata(
-  "https://raw.githubusercontent.com/Hyung-Z/tvshowgame/refs/heads/main/llist/idiomlist.json",
+  "https://raw.githubusercontent.com/Hyung-Z/tvshowgame/refs/heads/main/llist/proverb.json",
 ).then((response) => {
   for (let key in response) {
-    dataset[response[key]] = key
+    const front = response[key].split('/')[0]
+    const back = response[key].split('/')[1]
+    dataset[front] = back
   }
 });
 
+function Reset() {
+  mainDiv.style.display = 'flex';  
+  afterGameDiv.style.display ='none';
+  timerDiv.textContent = '';
+  answerDiv.style.display = 'block';
+}
 
 function OnGame(que) {
-    quest = que.pop()
+    quest = que.pop();
     meanDiv.textContent = quest;
     startTimer(timer_N.textContent, timerDiv, ()=>{GameFin(score)});
 }

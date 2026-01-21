@@ -40,8 +40,8 @@ export function startTimer(duration, displayElement, f) {
 }
 
 export function SolveOrNot(userinput, answer) {
-  const cleanInput = userinput.trim().toLowerCase();
-  const cleanAnswer = answer.trim().toLowerCase();
+  const cleanInput = userinput.replace(/(\s*)/g, "").toLowerCase();
+  const cleanAnswer = answer.replace(/(\s*)/g, "").toLowerCase();
   if (cleanInput === cleanAnswer) {
     return true;
   } else {
@@ -65,3 +65,5 @@ export function Shuffle(array) {
 
   return result;
 }
+
+

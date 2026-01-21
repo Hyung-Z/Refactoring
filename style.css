@@ -15,6 +15,7 @@ header {
     height: 65px;
     box-sizing: border-box;
     margin-bottom: 10px;
+    z-index: 100;
 }
 
 header p {
@@ -22,6 +23,7 @@ header p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 header p a {
@@ -36,7 +38,9 @@ header p a {
   background: none;
   border: none;
   cursor: pointer;
-  padding-top: 10px
+  padding-top: 10px;
+  position: relative;
+  z-index: 100;
 }
 
 .hamburger span {
@@ -45,10 +49,90 @@ header p a {
   height: 3px; /* 막대기 두께 */
   background-color: black; /* 색상 */
   border-radius: 2px;
+  pointer-events: none;
 }
 
 .hamburger:hover {
     transform: scale(1.05 )
+}
+
+/* 첫 번째 줄: 45도 회전해서 내려옴 */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+/* 두 번째 줄: 투명해짐 (사라짐) */
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+/* 세 번째 줄: -45도 회전해서 올라감 */
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0; /* 왼쪽에서 나오게 하려면 left, 오른쪽은 right */
+    width: 250px;
+    max-width: 50%;
+    height: 100vh;
+    background-color: #fdecdaef;
+    z-index: 90; /* 버튼(100)보다는 아래, 배경(80)보다는 위 */
+    padding-top: 80px; /* 버튼 피해서 내용 시작 */
+    
+    /* 평소엔 숨김 */
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease;
+}
+
+/* 메뉴 활성화 */
+.side-menu.active {
+    transform: translateX(0);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 80;
+    display: none; /* 평소엔 아예 없음 */
+}
+
+
+.backdrop.active {
+    display: block;
+}
+
+.side-menu ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 15px;
+    background-color: transparent;
+}
+
+.side-menu li {
+    margin-inline-start: 30px;
+    list-style: square;
+    width: 80%;
+    background-color: inherit;
+    color: rgb(35, 35, 35);
+}
+
+.side-menu li * {
+    background-color: transparent;
+}
+
+.side-menu li:hover {
+    scale: 1.05;
+}
+
+.side-menu li a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 글자색 상속 (검정) */
 }
 
 #ig {
@@ -98,6 +182,11 @@ footer {
 
     .back-home, .retry {
     width: 50px;
-    height: 50px;
-}
+    height: 50px;   
+    }
+
+    .side-menu li {
+        font-size: 20px;
+        margin-inline-start: 40px;
+    }
 }

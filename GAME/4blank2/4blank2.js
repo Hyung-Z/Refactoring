@@ -30,7 +30,7 @@ timerDownBtn.addEventListener("click", () => {
   const time = parseInt(timer_N.textContent);
 
   if (time == 1) {
-    timer_N.textContent = 30;
+    timer_N.textContent = 10;
   } else {
     timer_N.textContent = time - 1;
   }
@@ -38,20 +38,12 @@ timerDownBtn.addEventListener("click", () => {
 
 timerUpBtn.addEventListener("click", () => {
   const time = parseInt(timer_N.textContent);
-  if (time == 30) {
+  if (time == 10) {
     timer_N.textContent = 1;
   } else {
     timer_N.textContent = time + 1;
   }
 });
-
-function Reset() {
-  mainDiv.style.display = 'flex';  
-  afterGameDiv.style.display ='none';
-  timerDiv.textContent = '';
-  answerDiv.style.display = 'block';
-
-}
 
 startBtn.addEventListener("click", () => {
   Reset();
@@ -72,17 +64,25 @@ startBtn.addEventListener("click", () => {
 });
 
 fetchdata(
-  "https://raw.githubusercontent.com/Hyung-Z/tvshowgame/refs/heads/main/llist/idiomlist.json",
+  "https://raw.githubusercontent.com/Hyung-Z/tvshowgame/refs/heads/main/llist/4b2lists.json",
 ).then((response) => {
   for (let key in response) {
-    dataset[response[key]] = key
+    const front = response[key].slice(0,2)
+    const back = response[key].slice(2)
+    dataset[front] = back
   }
 });
 
+function Reset() {
+  mainDiv.style.display = 'flex';  
+  afterGameDiv.style.display ='none';
+  timerDiv.textContent = '';
+  answerDiv.style.display = 'block';
+}
 
 function OnGame(que) {
-    quest = que.pop()
-    meanDiv.textContent = quest;
+    quest = que.pop();
+    meanDiv.textContent = `${quest} _ _`;
     startTimer(timer_N.textContent, timerDiv, ()=>{GameFin(score)});
 }
 
@@ -91,7 +91,7 @@ function GameFin(score) {
     if (score == 20) {
         meanDiv.innerHTML += '</br>축하합니다.'
     }
-    meanDiv.innerHTML += `</br>정답 : ${questions[quest]}`
+    meanDiv.innerHTML += `</br>정답 : ${quest}${questions[quest]}`
     answerDiv.style.display = 'none';
     afterGameDiv.style.display = 'flex';
 }
