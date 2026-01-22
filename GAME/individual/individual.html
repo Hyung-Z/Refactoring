@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>수도퀴즈</title>
+    <title>인물퀴즈</title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/capital.css" />
+    <link rel="stylesheet" href="./individual.css" />
     <script src="/Layout/default.js" defer></script>
-    <script type="module" src="./capital.js" defer></script>    
+    <script type="module" src="./individual.js" defer></script>    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,30 +18,21 @@
   </head>
   <body>
       <section class="description">
-        <h1>수도 퀴즈</h1>
+        <h1>인물 퀴즈</h1>
         <div>
-          화면에 보이는 국가명을 보고, 알맞은 정답을 입력하세요. </br>
+          화면에 보이는 인물을 보고, 알맞은 정답을 입력하세요. </br>
         </div>
         
-        <section class="level">
-          <button class="down">▼</button>
-          <span><span id="levelN">1</span>단계</span>
-          <button class="up">▲</button>
-        </section>
-
         <section class="level">
           <button class="down">▼</button>
           <span><span id="timer">8</span>초</span>
           <button class="up">▲</button>
         </section>
  
-        <button class="start">START</button>
       </section>
     <main>
       <section class="quest-container">
-        <p class="country-name"></p>
-
-        <div class="flag">
+        <div class="potrait">
           
         </div>
       </section>
@@ -59,9 +51,39 @@
           <a href="/"><img class="back-home" src="/asset/Home.png" alt="main"></a>
           <a><img class="retry" src="/asset/re.png" alt="retry"></a>
         </div>
-      </section>
-      
+      </section>      
     </main>
+
+    <section class="range-container">
+      <p>골라주세요!</p>
+      <div class='carousel-wrapper' id="type-sector">
+        <button class="nav-btn prev">❮</button>
+        <section id="carousel">
+          <ul class="track">
+            <li class="slide">All</li>
+            <li class="slide">남자 아이돌</li>
+            <li class="slide">여자 아이돌</li>
+            <li class="slide">가수</li>
+            <li class="slide">배우</li>
+            <li class="slide">스포츠</li>
+            <li class="slide">기타</li>
+        </ul>
+        </section>
+        <button class="nav-btn next">❯</button>
+      </div>
+
+      <div id="type-level">
+        <section>
+          <ul class="track">
+            <li class="slide">쉬움</li>
+            <li class="slide">중간</li>
+            <li class="slide">어려움</li>
+        </ul>
+        </section>
+      </div>
+      <button class="start">START</button>
+
+    </section>
   </body>
 
 </html>

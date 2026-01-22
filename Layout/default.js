@@ -20,11 +20,11 @@ const Header = `
   <nav class="side-menu">
     <ul>
       <li id='home'><a href = "/">메인으로</a></li>
-      <li ><a href="./GAME/capital/capital.html">수도 퀴즈</a></li>
-      <li ><a href="./GAME/idiom/idiom.html">사자성어 퀴즈</a></li>
-      <li ><a href="">인물퀴즈</a></li>
-      <li ><a href="./GAME/4blank2/4blank2.html">이어말하기: 사자성어</a></li>
-      <li ><a href="./GAME/proverb/proverb.html">이어말하기: 속담</a></li>
+      <li ><a href="/GAME/capital/capital.html">수도 퀴즈</a></li>
+      <li ><a href="/GAME/idiom/idiom.html">사자성어 퀴즈</a></li>
+      <li ><a href="/GAME/individual/individual.html">인물퀴즈</a></li>
+      <li ><a href="/GAME/4blank2/4blank2.html">이어말하기: 사자성어</a></li>
+      <li ><a href="/GAME/proverb/proverb.html">이어말하기: 속담</a></li>
       <li ><a href="">1초 음악퀴즈</a></li>
       <li ><a href="">가사 퀴즈</a></li>
       <li ><a href="">OST 퀴즈</a></li>

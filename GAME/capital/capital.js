@@ -67,20 +67,26 @@ timerUpBtn.addEventListener("click", () => {
   }
 });
 
+reloadBtn.addEventListener('click', ()=> {
+  flagDiv.textContent = '';
+  timerDiv.textContent = '';
+  countryNameDiv.textContent = '';
+})
+
 startBtn.addEventListener("click", () => {
   mainDiv.style.display = 'flex';  
   afterGameDiv.style.display ='none';
-  inputDiv.focus()
   questions = Prepare();
   sortedQue = Shuffle(Object.keys(questions))
   let ready = 5;
   flagDiv.textContent = ready;
+  answerDiv.style.display = 'block';
+  inputDiv.focus()
   const startTiemr = setInterval(() => {
     ready--;
     flagDiv.textContent = ready;
     if (ready == 0) {
       clearInterval(startTiemr);
-      answerDiv.style.display = 'block';
       OnGame(sortedQue);
     }
   }, 1000);
@@ -121,10 +127,6 @@ function GameFin(score) {
     afterGameDiv.style.display = 'flex';
 }
 
-
-function Reset() {
-  
-}
 
 inputForm.addEventListener('submit', (e)=> {
     e.preventDefault()
