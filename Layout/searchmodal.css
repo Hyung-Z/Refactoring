@@ -1,0 +1,188 @@
+/* --- 모달 전체 래퍼 --- */
+.search-modal-wrapper {
+    position: relative;
+    display: none; /* 기본적으로 숨김 */
+    z-index: 1000;
+}
+
+/* JS에서 .active 클래스를 붙이면 보이게 함 */
+.search-modal-wrapper.active {
+    display: block;
+
+}
+
+.right .title:hover {
+    scale: 1.03;
+}
+
+/* --- 1. 배경 (Overlay) --- */
+.search-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1); /* 투명도 있는 검정 */
+    cursor: default;
+    z-index: 998;
+}
+
+/* --- 2. 모달 본체 (Container) --- */
+.search-modal-container {
+    position: absolute;
+    top: -20px; /* 버튼 바로 아래 */
+    right: calc(50% - 30px);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 12px; /* rounded-xl */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl */
+    border: 2px solid #3b3b3b; /* gray-200 */
+    padding: 8px; /* p-5 */
+    z-index: 999;
+}
+
+/* 헤더 영역 */
+.search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f3f4f6; /* gray-100 */
+}
+
+.search-modal-title {
+    font-size: 10px; /* text-lg */
+    color: #1f2937;      /* gray-800 */
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #9ca3af; /* gray-400 */
+    cursor: pointer;
+    font-size: 10px;
+    padding: 4px;
+    transition: color 0.2s;
+}
+.close-btn:hover { color: #4b5563; }
+
+/* 폼 영역 */
+.form-group {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-size: 10px; /* text-xs */
+    color: #6b7280;     /* gray-500 */
+    margin-bottom: 4px;
+}
+
+.form-input {
+    width: 100%;
+    font-size: 10px; /* text-sm */
+    border: 2px solid #d1d5db; /* gray-300 */
+    border-radius: 6px;
+    padding: 4px 6px;
+    background-color: #f9fafb; /* gray-50 */
+    outline: none;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    border-color: #3b82f6; /* blue-500 */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* ring */
+    background-color: white;
+}
+
+/* 인풋 가로 배치용 */
+.form-row {
+    display: flex;
+    gap: 8px;
+}
+.form-col {
+    flex: 1;
+}
+
+/* 버튼 영역 */
+.btn-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-size: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #374151;
+}
+.btn-secondary:hover { background-color: #d1d5db; }
+
+.btn-primary {
+    background-color: #3f72e1; /* blue-600 */
+    color: white;
+}
+.btn-primary:hover { background-color: #1d4ed8; }
+
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* 위에서 시작 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* 원래 위치 */
+    }
+}
+
+/* 2. 배경: 은은하게 어두워지는 효과 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- 적용 부분 --- */
+
+/* 모달이 켜질 때(.active) 내부 요소들에 애니메이션 발동 */
+.search-modal-wrapper.active .search-modal-container {
+    /* 이름 / 시간 / 가속도 / 끝난후상태유지 */
+    animation: slideDownFade 0.3s ease-out forwards;
+}
+
+.search-modal-wrapper.active .search-modal-overlay {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+
+@media (min-width:768px) {
+    .search-modal-title {
+        font-size: 16px;
+    }
+
+    .form-label {
+        font-size: 16px;
+    }
+    
+    .form-input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+}

@@ -1,0 +1,128 @@
+.setup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    height: 30px;
+}
+
+.level {
+    width: 200px;    
+}
+
+.setup:hover {
+    background-color:  rgb(223, 223, 223);
+}
+
+.start {
+    display: none;
+}
+
+.mode-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.modes ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    font-size: 16px;
+    gap: 8px;
+    margin: 8px auto;
+}
+
+.modes li {
+    border: 2px solid rgba(0, 0, 0, 0.884);
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.modes li .selected {
+    background-color: #ff8400;
+}
+
+.modes li:hover {
+    scale: 1.05;
+    border-color: #ff8400
+}
+
+.modes li span {
+    font-size: 5px;
+}
+
+.modes li *{
+    background-color: inherit;
+}
+
+
+.range-container * {
+    background-color: white;
+}
+
+.range-container {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
+.quest-container {
+    height: 30vh;
+}
+
+.start-option, .duration-option {
+    width: 30px;
+    text-align: center;
+}
+
+.ingame-btn {
+    margin-top : 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    position: relative;
+}
+
+.ingame-btn * {
+    width: 25px;
+    height: 25px;
+}
+
+#input-form * {
+    padding: 4px;
+}
+
+#input-form button:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+.answer-container {
+    height: auto;
+}
+
+@media (min-width : 768px) {
+    .modes li {
+        width: 150px;
+        font-size: 1rem;
+    }
+
+    .modes li span {
+        font-size: 10px;
+    }
+
+    .modes ul {
+        gap: 16px;
+    }
+
+    .song-list p {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .song-list span {
+        font-size: 10px;
+        margin-left: 10px;
+    }
+}

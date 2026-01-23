@@ -1,0 +1,330 @@
+
+.custom {
+    position: relative;
+    /* display: flex; */
+    display: none;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+    padding: 16px;
+    height: 400px;
+}
+
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    font-size: 10px;
+    position: relative;
+    max-height: 60vh;
+}
+
+.playlist-header .title{
+    margin-bottom: 4px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.playlist-header .package {
+    margin-bottom: 4px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    background-color: black;
+    gap:2px;
+    overflow: hidden;
+}
+
+.package *{
+    flex: 1;
+}
+
+.package *:hover {
+    background-color: #e3e3e3;
+}
+
+
+.song-list {
+    height: 90%;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.song-list::-webkit-scrollbar {
+    width: 8px;  /* 세로 스크롤바 너비 */
+    height: 8px; /* 가로 스크롤바 높이 */
+}
+
+/* 2. ★ 핵심: 위/아래(좌/우) 화살표 버튼 없애기 */
+.song-list::-webkit-scrollbar-button {
+    display: none;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+    background-color: 
+    rgb(192, 191, 191); /* 색상 (Tailwind gray-300 정도) */
+    border-radius: 10px;       /* 둥글게 */
+    background-clip: padding-box; /* 여백 투명하게 처리할 때 유용 */
+    border: 2px solid transparent; /* 막대 주변에 여백 주기 */
+}
+
+/* 4. 막대바가 지나가는 트랙 (배경) */
+.song-list::-webkit-scrollbar-track {
+    background-color: transparent; /* 배경 투명하게 (혹은 #f1f1f1) */
+    border-radius: 10px;
+}
+
+/* (선택) 마우스 올렸을 때 막대 진하게 */
+.song-list::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8; /* Tailwind gray-400 */
+}
+
+
+.song-list li {
+    list-style: none;
+    border-bottom: 1px solid rgb(107, 107, 107);
+    text-align: left;
+    padding-left: 4px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    user-select: none; 
+    -webkit-user-select: none;
+}
+
+
+.song-list li * {
+    background-color: inherit;
+}
+
+.song-list .active {
+    background-color: cornsilk;
+}
+
+.song-list span {
+    color: rgb(84, 84, 84);
+    font-size: 8px;
+}
+
+.exchange-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.exchange-controls button {
+    padding: 4px;
+    font-size: 10px;
+}
+
+.exchange-controls * {
+    background-color: inherit;
+}
+
+.exchange-controls button:hover {
+    background-color: rgb(209, 209, 209);
+    scale: 1.05;
+}
+
+.selected {
+    background-color: #ffb974
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.year-select-section {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.year-select-section h2 {
+    font-weight: 100;
+    margin-bottom: 16px;
+}
+
+.year-buttons-row {
+    display: flex;       /* 가로 배치 */
+    justify-content: center;
+    gap: 10px;           /* 버튼 사이 간격 */
+    flex-wrap: wrap;     /* 화면 작으면 줄바꿈 */
+    margin-bottom: 20px;
+}
+
+.year-btn {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 25px; /* 둥글게 */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.year-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* ★ 선택된 상태 스타일 */
+.year-btn.active {
+    background-color: #DDEB9D; /* 보라/파랑 계열 */
+    color: rgb(56, 56, 56);
+    border-color: #DDEB9D;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
+}
+
+
+
+
+
+
+
+/* 검색창 래퍼 */
+.search-wrapper {
+    position: relative; /* 중요: 자동완성 리스트의 기준점 */
+    width: 90%;
+    margin: 0 auto 30px; /* 가운데 정렬 */
+}
+
+/* 입력창 */
+#artist-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.section-title {
+    font-weight: 100;
+    margin-bottom: 12px;
+}
+
+#artist-input:focus {
+    border-color: rgb(154, 149, 255);
+}
+
+/* 자동완성 리스트 (둥둥 떠있는 창) */
+.suggestions-list {
+    position: absolute;
+    top: 100%; /* 입력창 바로 아래 */
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    display: none; /* 평소엔 숨김 */
+}
+.suggestions-list.show {
+    display: block;
+}
+
+/* 자동완성 아이템 */
+.suggestions-list li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+.suggestions-list li:hover {
+    background-color: #f9fafb;
+}
+
+/* 선택된 태그 컨테이너 */
+.selected-tags-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 50px; /* 없어도 공간 차지 */
+}
+
+/* 태그 버튼 (연도 버튼 스타일 재사용 + 삭제 기능) */
+.artist-tag {
+    padding: 6px 12px;
+    background-color: #c5d0ff; /* 선택된 색상 */
+    color: black;
+    border: 1px solid #a3a3a3;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.artist-select-section {
+    padding: 20px;
+}
+
+.artist-tag span {
+    background-color: inherit;
+}
+
+.artist-tag:hover {
+    background-color: #8175ff;
+}
+
+
+.start-btn {
+    padding: 4px;
+    margin: 6px auto;
+}
+
+.start-btn:hover {
+    scale: 1.05;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+@media (min-width:768px) {
+    .playlist-header {
+        font-size: 12px;
+    }
+    .title {
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .package *{
+        padding: 4px;
+    }
+
+}
