@@ -80,7 +80,7 @@ export class CustomPlaylist {
             if (selectedSet.has(song.id)) li.classList.add('active');
             li.dataset.id = song.id;
 
-            li.innerHTML = `<p>${song.title}</p><span>${song.artist}</span>`;
+            li.innerHTML = `<p>${song.title[0]}</p><span>${song.artist}</span>`;
             // ---------------------------------------------------------
             // [드래그 로직 시작]
             // ---------------------------------------------------------
@@ -208,7 +208,7 @@ export class CustomPlaylist {
             const songYear = parseInt(song.date.split(".")[0]);
             const keywordTitle = criteria.title?.toLowerCase() || "";
             const keywordArtist = criteria.artist?.toLowerCase() || "";
-            const targetTitle = song.title.toLowerCase();
+            const targetTitle = song.title[0].toLowerCase();
             const targetArtist = song.artist.toLowerCase();
 
             const matchTitle = !keywordTitle || targetTitle.includes(keywordTitle);

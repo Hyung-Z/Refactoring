@@ -1,8 +1,7 @@
 .video-wrapper {
     position: relative;
     width: 100%;
-    max-width: 640px; /* 적당한 크기 */
-    aspect-ratio: 16 / 9; /* 유튜브 비율 유지 */
+    height: 100%;
     margin: 0 auto;
     background-color: #000;
     border-radius: 12px;
@@ -12,17 +11,15 @@
     justify-content: center;
 }
 
-
-
 .video-wrapper.fin {
-    background-color: inherit;
+    background-color: transparent;
 }
 
 /* 플레이어 자체는 가득 채움 */
 #youtube-player {
-    width: 100%;
+    width: 80%;
     height: 100%;
-    z-index: -5;
+    margin: auto;
 }
 
 /* 커튼: 영상 위에 덮어씌움 */
@@ -57,8 +54,37 @@
     pointer-events: none;
 }
 
+.timer {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.excuse {
+    margin-top: 6px;
+}
+
+.ingame-btn *,.result-btn *  {
+    width: 70px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.ingame-btn *:hover,.result-btn *:hover {
+    background-color: rgba(210, 210, 210, 0.735);
+}
+
+.result-btn {
+    display: none;
+}
+
 @keyframes pulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
     100% { opacity: 0.5; }
+}
+
+@media (min-width:768px) {
+    .quest-container {
+        height: 50vh;
+    }
 }

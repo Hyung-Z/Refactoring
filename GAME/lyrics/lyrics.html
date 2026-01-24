@@ -6,12 +6,12 @@
     <title>1초 음악퀴즈</title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/capital.css" />
-    <link rel="stylesheet" href="./music.css" />
+    <link rel="stylesheet" href="../music/music.css" />
     <link rel="stylesheet" href="/Layout/custom.css"/>
     <link rel="stylesheet" href="/Layout/searchmodal.css">
     <link rel="stylesheet" href="/Layout/youtube.css">
     <script src="/Layout/default.js" defer></script>
-    <script type="module" src="./music.js" defer></script>    
+    <script type="module" src="lyrics.js" defer></script>    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,25 +21,14 @@
   </head>
   <body>
       <section class="description">
-        <h1>1초 음악퀴즈</h1>
+        <h1>가사 퀴즈</h1>
         <div>
-          들려오는 음악을 듣고 제목을 맞혀주세요 </br>
+          화면에 보이는 가사를 보고 제목을 맞혀보세요</br>
         </div>
         
-        <section class="level">
-          <button class="down">▼</button>
-          <span><span id="start">60</span>초</span>
-          <button class="up">▲</button>
-          <span>부터</span>
-        </section>
-        <section class="level">
-          <button class="down">▼</button>
-          <span><span id="duration">5</span>초</span>
-          <button class="up">▲</button>
-          <span>동안</span>
-        </section>
  
         <div class="mode-container">
+          <span></br></span>
           <h3>모드</h3>
           <div class="modes">
             <ul>
@@ -59,11 +48,11 @@
             <span class="curtain-text">🎵 음악 재생 중...</span>
           </div>
         </div>
+
         <div class="ending"></div>
       </section>
 
       <section class="answer-container">
-        <p class="option"><input type="number" class="start-option"></input>초 부터 <input type="number" class="duration-option"></input>초 동안</p>
         <div class="answer-sheet">
           <form id="input-form">
             <input id='answer' type="text" autocomplete="off">
@@ -71,12 +60,11 @@
           </form>
 
           <div class="ingame-btn">
-            <button id="repeat">다시듣기</button>
             <button id="reveal">정답공개</button>
           </div>
           
           <p class="timer"></p>
-
+          
           <div class="result-btn">
             <button id="next">다음 문제</button>
           </div>

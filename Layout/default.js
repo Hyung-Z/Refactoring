@@ -10,7 +10,7 @@ const Header = `
     <p><a href="/">예능게임모음</a></p>
 
     <section id="ig">
-      <img src="/asset/instagram.png" alt="iglink">
+      <a href="https://www.instagram.com/tvshowgame/" target="_blank"><img src="/asset/instagram.png" alt="iglink"></a>
     </section>
   
   </header>
@@ -25,17 +25,17 @@ const Header = `
       <li ><a href="/GAME/individual/individual.html">인물퀴즈</a></li>
       <li ><a href="/GAME/4blank2/4blank2.html">이어말하기: 사자성어</a></li>
       <li ><a href="/GAME/proverb/proverb.html">이어말하기: 속담</a></li>
-      <li ><a href="">1초 음악퀴즈</a></li>
-      <li ><a href="">가사 퀴즈</a></li>
-      <li ><a href="">OST 퀴즈</a></li>
-      <li ><a href="">뮤직 믹스 퀴즈</a></li>
+      <li ><a href="/GAME/music/music.html">1초 음악퀴즈</a></li>
+      <li ><a href="/GAME/lyrics/lyrics.html">가사 퀴즈</a></li>
+      <li ><a href="">OST 퀴즈(예정)</a></li>
+      <li ><a href="">뮤직 믹스 퀴즈(예정)</a></li>
     </ul>
   </nav>
 `;
 
 const Footer = `
   <footer>
-    <p>© 2023 tvshowgame</p>
+    <p>@tvshowgame</p>
   </footer>
 `;
 

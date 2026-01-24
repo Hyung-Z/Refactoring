@@ -1,14 +1,9 @@
-import { startTimer, Shuffle, SolveOrNot } from "/utils/gamestart.js";
+import { CutLyrics, Shuffle, SolveOrNot } from "/utils/gamestart.js";
 import { CustomPlaylist } from "/Layout/custom.js";
 import { SearchModal } from "/Layout/searchModal.js";
 import { YearSelector } from "/Layout/yearSelector.js";
 import { ArtistSelector } from "/Layout/ArtistSelector.js";
 import { YouTubeManager } from "/Layout/YoutubeManager.js";
-
-const startUpBtn = document.querySelectorAll(".up")[0];
-const startDownBtn = document.querySelectorAll(".down")[0];
-const durationUpBtn = document.querySelectorAll(".up")[1];
-const durationDownBtn = document.querySelectorAll(".down")[1];
 
 const startBtn = document.querySelector(".start");
 
@@ -35,8 +30,8 @@ const reBtn = document.querySelector(".retry");
 const excuseDiv = document.querySelector(".excuse");
 let skip = 0;
 
-const option_start = document.querySelector(".start-option");
-const option_duration = document.querySelector(".duration-option");
+const curtainText = document.querySelector('.curtain-text')
+const endingDiv = document.querySelector('.ending')
 
 const myPlaylist = new CustomPlaylist(".custom", {
   dataset: [],
@@ -73,8 +68,7 @@ const searchModal = new SearchModal(".playlist.right .playlist-header", {
 const ytManager = new YouTubeManager({
   onLoadError: (errorCode) => {
     skip = skip + 1;
-    excuseDiv.textContent = `저작권 문제로 방금 곡이 넘어갔습니다.`;
-    OnGame(sortedQue);
+    excuseDiv.textContent = `저작권 문제로 재생이 불가합니다.`;
   },
 });
 
@@ -92,61 +86,6 @@ let score = 0;
 const chartStartBtn = document.querySelector("#chart");
 
 
-
-startBtn.addEventListener("click", () => {
-  mainDiv.style.display = "flex";
-  afterGameDiv.style.display = "none";
-  inputDiv.focus();
-  let ready = 5;
-  endingDiv.textContent = ready;
-  const startTiemr = setInterval(() => {
-    ready--;
-    endingDiv.textContent = ready;
-    if (ready == 0) {
-      clearInterval(startTiemr);
-      answerDiv.style.display = "block";
-      OnGame(sortedQue);
-    }
-  }, 1000);
-  rangeContainer.style.display = "none";
-});
-
-startDownBtn.addEventListener("click", () => {
-  const start = parseInt(start_N.textContent);
-
-  if (start == 0) {
-    start_N.textContent = 180;
-  } else {
-    start_N.textContent = start - 1;
-  }
-});
-
-startUpBtn.addEventListener("click", () => {
-  const start = parseInt(start_N.textContent);
-  if (start == 10) {
-    start_N.textContent = 1;
-  } else {
-    start_N.textContent = start + 1;
-  }
-});
-
-durationDownBtn.addEventListener("click", () => {
-  const duration = parseInt(duration_N.textContent);
-  if (duration == 1) {
-    duration_N.textContent = 10;
-  } else {
-    duration_N.textContent = duration - 1;
-  }
-});
-
-durationUpBtn.addEventListener("click", () => {
-  const duration = parseInt(duration_N.textContent);
-  if (duration == 10) {
-    duration_N.textContent = 1;
-  } else {
-    duration_N.textContent = duration + 1;
-  }
-});
 
 reBtn.addEventListener("click", () => {
   rangeContainer.style.display = "block";
@@ -207,30 +146,31 @@ fetchdata(
   chartData = response;
 });
 
-
+chartStartBtn.addEventListener("click", () => {
+  const songs = dataset.filter((song) => {
+    return chartData.includes(song.title[0]);
+  });
+  console.log(songs.length)
+  Prepare(songs);
+  OnGame(sortedQue);
+});
 
 function Prepare(songs) {
-  skip = 0;
   sortedQue = Shuffle(songs);
-  excuseDiv.textContent = '';
-  afterGameDiv.style.display = 'none';
   mainDiv.style.display = "flex";
   rangeContainer.style.display = "none";
   descriptionDiv.style.display = "none";
   videoWrapperDiv.style.visibility = 'visible';
-  document.querySelector(".start-option").value = parseInt(start_N.textContent);
-  document.querySelector(".duration-option").value = parseInt(
-    duration_N.textContent,
-  );
+  afterGameDiv.style.display = 'none';
+  skip = 0;
+  excuseDiv.textContent = '';
 }
 
 const ingameBtn = document.querySelector('.ingame-btn')
 const resultBtn = document.querySelector('.result-btn')
-const endingDiv = document.querySelector('.ending')
-
 
 function OnGame(que) {
-  endingDiv.style.display = 'none'
+  endingDiv.style.display = 'none';
   inputForm.style.display = 'block';
   ingameBtn.style.display = 'inline-block'
   resultBtn.style.display = 'none'
@@ -239,17 +179,11 @@ function OnGame(que) {
     GameFin(score);
     return;
   }
-  const start_time = parseInt(option_start.value);
-  const duration_time = parseInt(option_duration.value);
-
-  console.log(que.length);
   quest = que.pop();
-  console.log(quest.youtubeUrl, start_time, duration_time);
-  ytManager.playSegment(quest.youtubeUrl, start_time, duration_time);
-
+  const randomLyrics = CutLyrics(quest.lyrics)
+  curtainText.textContent = randomLyrics
+  console.log(randomLyrics)
 }
-
-
 
 function GameFin(score) {
   endingDiv.style.display = 'inline-block'
@@ -258,8 +192,7 @@ function GameFin(score) {
   ytManager.toggleCurtain(false)
   answerDiv.style.display = "none";
   afterGameDiv.style.display = "flex";
-  endingDiv.innerHTML += `</br>${quest.title[0]}-${quest.artist}`;
-  endingDiv.innerHTML += `</br> 저작권 문제로 총 ${skip} 곡이 넘어갔습니다.`;
+  excuseDiv.textContent = `저작권 문제로 총 ${skip} 곡이 넘어갔습니다.`;
 }
 
 inputForm.addEventListener("submit", (e) => {
@@ -286,7 +219,7 @@ inputForm.addEventListener("submit", (e) => {
     } 
   } 
   console.log(quest)
-  ytManager.openAnswer(quest.youtubeUrl, option_start.value - 3)
+  ytManager.openLyricsAnswer(quest.youtubeUrl)
   excuseDiv.textContent = ''
   timerDiv.textContent = `${quest.title[0]} - ${quest.artist}`
   inputDiv.focus();
@@ -294,7 +227,6 @@ inputForm.addEventListener("submit", (e) => {
 
 
 const revealBtn = document.getElementById('reveal')
-const repeatBtn = document.getElementById('repeat')
 const nextBtn = document.getElementById('next')
 
 
@@ -322,16 +254,16 @@ revealBtn.addEventListener('click', (e)=> {
     } 
   } 
   console.log(quest)
-  ytManager.openAnswer(quest.youtubeUrl, option_start.value - 1)
+  ytManager.openLyricsAnswer(quest.youtubeUrl)
   excuseDiv.textContent = ''
   timerDiv.textContent = `${quest.title[0]} - ${quest.artist}`
   inputDiv.focus();
 })
 
-repeatBtn.addEventListener('click', ()=> {
-  ytManager.playSegment(quest.youtubeUrl, option_start.value, option_start.value+option_duration.value)
-})
 
 nextBtn.addEventListener('click', ()=> {
+  ytManager.stopVideo()
+  ytManager.toggleCurtain(true);
+  excuseDiv.textContent = '';
   OnGame(sortedQue)
 })
