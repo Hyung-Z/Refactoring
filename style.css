@@ -175,6 +175,49 @@ footer {
     gap:20px;
 }
 
+
+/* 기본 입력창 스타일 (transition 필수) */
+.answer-container {
+    transition: all 0.3s ease; /* 색이 부드럽게 바뀌도록 */
+}
+
+.answer-container * {
+    transition: all 0.3s ease;
+}
+
+/* ✅ 정답일 때: 초록색 배경 + 테두리 */
+.answer-container.correct {
+    background-color: #d1fae5; /* 연한 초록 */
+    border-color: #10b981;     /* 진한 초록 */
+    color: #065f46;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); /* 초록색 광채 */
+}
+
+.answer-container.correct * {
+    background-color: transparent;
+}
+
+/* ❌ 오답일 때: 빨간색 배경 + 테두리 + 흔들림 효과 */
+.answer-container.wrong {
+    background-color: #fee2e2; /* 연한 빨강 */
+    border-color: #ef4444;     /* 진한 빨강 */
+    color: #991b1b;
+    animation: shake 0.4s ease-in-out; /* 흔들리는 애니메이션 */
+}
+
+.answer-container.wrong * {
+    background-color: transparent;
+}
+
+/* 흔들림(Shake) 키프레임 */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+
 @media (min-width: 768px) {
     #ig {
         display: block;

@@ -38,7 +38,7 @@ const selectedLevel = new Set();
 startBtn.addEventListener("click", () => {
   mainDiv.style.display = "flex";
   afterGameDiv.style.display = "none";
-  inputDiv.focus();
+  inputForm.style.display = 'none'
   let ready = 5;
   potraitDiv.textContent = ready;
   const startTiemr = setInterval(() => {
@@ -124,7 +124,8 @@ levelDiv.addEventListener("click", (e) => {
 reBtn.addEventListener('click', ()=> {
   rangeContainer.style.display = 'block';
   timerDiv.textContent = '';
-  answerDiv.style.display = 'block'
+  answerDiv.style.display = 'block';
+  score = 0;
 })
 
 
@@ -183,8 +184,10 @@ function switchToEng(kr) {
 
 function OnGame(que) {
   quest = que.pop();
+  inputForm.style.display = 'block'
+  inputDiv.focus();
   potraitDiv.innerHTML = `<img src="https://raw.githubusercontent.com/Hyung-Z/tvshowgame/refs/heads/main/llist/imgs/photo/${quest}.jpg" alt="${quest}"></img>`;
-  startTimer(100, timerDiv, () => {
+  startTimer(parseInt(timer_N.textContent), timerDiv, () => {
     GameFin(score);
   });
 }
@@ -213,17 +216,20 @@ inputForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const userInput = inputDiv.value;
   inputDiv.value = "";
-  let judge = false;
+  const cleanInput = userInput.replace(/(\s*)/g, "").toLowerCase();
+  let correct = null;
+
   for (let answer of [...questions[quest], quest]) {
-    console.log(answer)
-    if (SolveOrNot(userInput, answer)) {      
+    const cleanAnswer = answer.replace(/(\s*)/g, "").toLowerCase();
+    if (cleanInput == cleanAnswer) {      
       score++;
-      judge = true;
+      correct = cleanAnswer;
       break;      
     }
   }
-  console.log(judge)
-  if (judge) {
+
+  if (correct) {
+    SolveOrNot(correct,correct)
     if (sortedQue.length == 0) {
       GameFin(score)
     } else {
@@ -231,9 +237,12 @@ inputForm.addEventListener("submit", (e) => {
     }
   }
   else {
+    SolveOrNot(userInput, quest)
     startTimer(-5, timerDiv, () => {
       GameFin(score);
     });
   }
+  
   inputDiv.focus();
+  
 });

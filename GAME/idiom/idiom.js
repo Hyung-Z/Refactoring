@@ -50,12 +50,12 @@ function Reset() {
   afterGameDiv.style.display ='none';
   timerDiv.textContent = '';
   answerDiv.style.display = 'block';
-
+  score = 0;
 }
 
 startBtn.addEventListener("click", () => {
   Reset();
-  inputDiv.focus()
+  inputForm.style.display = 'none'
   questions = dataset
   sortedQue = Shuffle(Object.keys(questions))
   let ready = 3;
@@ -83,6 +83,8 @@ fetchdata(
 function OnGame(que) {
     quest = que.pop()
     meanDiv.textContent = quest;
+    inputForm.style.display = 'block'
+    inputDiv.focus()
     startTimer(timer_N.textContent, timerDiv, ()=>{GameFin(score)});
 }
 

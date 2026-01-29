@@ -71,6 +71,7 @@ reloadBtn.addEventListener('click', ()=> {
   flagDiv.textContent = '';
   timerDiv.textContent = '';
   countryNameDiv.textContent = '';
+  score = 0;
 })
 
 startBtn.addEventListener("click", () => {
@@ -81,7 +82,8 @@ startBtn.addEventListener("click", () => {
   let ready = 5;
   flagDiv.textContent = ready;
   answerDiv.style.display = 'block';
-  inputDiv.focus()
+  
+  inputForm.style.display = 'none'
   const startTiemr = setInterval(() => {
     ready--;
     flagDiv.textContent = ready;
@@ -111,6 +113,8 @@ function Prepare() {
 
 function OnGame(que) {
     quest = que.pop()
+    inputForm.style.display = 'block';
+    inputDiv.focus()
     countryNameDiv.textContent = quest;
     const code = countrycode[quest]
     flagDiv.innerHTML = `<img src="/asset/Flags/${code}.gif" alt="${quest} 국기"></img>`

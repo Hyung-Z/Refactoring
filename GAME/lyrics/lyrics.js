@@ -98,6 +98,8 @@ for (let mode of gamemodeDiv.childNodes) {
     const custom = document.querySelector(".custom");
     const year = document.querySelector(".year-select-section");
     const artist = document.querySelector(".artist-select-section");
+    document.getElementById('before').style.display = 'none';
+
     switch (mode.id) {
       case "custom":
         custom.style.display = "flex";
@@ -156,6 +158,7 @@ chartStartBtn.addEventListener("click", () => {
 });
 
 function Prepare(songs) {
+  score = 0;
   sortedQue = Shuffle(songs);
   mainDiv.style.display = "flex";
   rangeContainer.style.display = "none";
@@ -201,24 +204,27 @@ inputForm.addEventListener("submit", (e) => {
   inputForm.style.display = 'none';
   e.preventDefault();
   const userInput = inputDiv.value;
+  const cleanInput = userInput.split('(')[0].replace(/(\s*)/g, "").toLowerCase();
+  let correct = null;
   inputDiv.value = "";
-  let judge = false;
+
+
   for (let answer of quest.title) {
-    console.log(answer);
-    if (SolveOrNot(userInput, answer)) {
+    const cleanAnswer = answer.split('(')[0].replace(/(\s*)/g, "").toLowerCase();
+    if (cleanInput == cleanAnswer) {      
       score++;
-      judge = true;
-      break;
+      correct = cleanAnswer;
+      break;      
     }
   }
 
-  console.log(judge);
-  if (judge) {
+  if (correct) {
+    SolveOrNot(correct,correct)
     if (sortedQue.length == 0) {
       GameFin(score);
     } 
-  } 
-  console.log(quest)
+  } else SolveOrNot(userInput, quest.title[0])
+
   ytManager.openLyricsAnswer(quest.youtubeUrl)
   excuseDiv.textContent = ''
   timerDiv.textContent = `${quest.title[0]} - ${quest.artist}`
@@ -231,29 +237,32 @@ const nextBtn = document.getElementById('next')
 
 
 revealBtn.addEventListener('click', (e)=> {
-  e.preventDefault();
   ingameBtn.style.display = 'none'
   resultBtn.style.display = 'inline-block'
   inputForm.style.display = 'none';
+  e.preventDefault();
   const userInput = inputDiv.value;
+  const cleanInput = userInput.split('(')[0].replace(/(\s*)/g, "").toLowerCase();
+  let correct = null;
   inputDiv.value = "";
-  let judge = false;
+
+
   for (let answer of quest.title) {
-    console.log(answer);
-    if (SolveOrNot(userInput, answer)) {
+    const cleanAnswer = answer.split('(')[0].replace(/(\s*)/g, "").toLowerCase();
+    if (cleanInput == cleanAnswer) {      
       score++;
-      judge = true;
-      break;
+      correct = cleanAnswer;
+      break;      
     }
   }
 
-  console.log(judge);
-  if (judge) {
+  if (correct) {
+    SolveOrNot(correct,correct)
     if (sortedQue.length == 0) {
       GameFin(score);
     } 
-  } 
-  console.log(quest)
+  } else SolveOrNot(userInput, quest.title[0])
+
   ytManager.openLyricsAnswer(quest.youtubeUrl)
   excuseDiv.textContent = ''
   timerDiv.textContent = `${quest.title[0]} - ${quest.artist}`

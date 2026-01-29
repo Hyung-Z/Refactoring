@@ -288,6 +288,7 @@
 
 .artist-select-section {
     padding: 20px;
+    display: none;
 }
 
 .artist-tag span {
@@ -298,6 +299,10 @@
     background-color: #8175ff;
 }
 
+#before {
+    font-weight: 100;
+    margin-bottom : 16px;
+}
 
 .start-btn {
     padding: 4px;

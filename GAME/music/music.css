@@ -57,7 +57,7 @@
 
 .modes li:hover {
     scale: 1.05;
-    border-color: #ff8400
+    background-color: #ffeddc
 }
 
 .modes li span {

@@ -3,6 +3,12 @@ const reloadBtn = document.querySelector(".retry");
 const descriptDiv = document.querySelector(".description");
 const mainDiv = document.querySelector("main");
 
+const sounds = {
+  'correct' : new Audio("/asset/sounds/yes.mp3"),
+  'wrong' : new Audio("/asset/sounds/no.mp3"),
+  'countdown' : new Audio('/asset/sounds/tiktok2.mp3')
+}
+
 startBtn.addEventListener("click", () => {
   descriptDiv.style.display = "none";
 });
@@ -34,6 +40,7 @@ export function startTimer(duration, displayElement, f) {
     if (time <= 0) {
       clearInterval(timerInterval); // 타이머 삭제
       displayElement.textContent = "시간초과!";
+
       f();
     }
   }, 1000);
@@ -43,11 +50,16 @@ export function SolveOrNot(userinput, answer) {
   const cleanInput = userinput.replace(/(\s*)/g, "").toLowerCase();
   const cleanAnswer = answer.replace(/(\s*)/g, "").toLowerCase();
   if (cleanInput === cleanAnswer) {
+    playSFX('correct')
+    triggerVisualFeedback(true)
     return true;
   } else {
+    playSFX('wrong')
+    triggerVisualFeedback(false)
     return false;
   }
 }
+
 
 export function Shuffle(array) {
   // 1. 원본 배열을 복사합니다. (원본 보호)
@@ -106,4 +118,50 @@ export function CutLyrics(fullLyrics) {
   }
   console.log(segment);
   return segment;
+}
+
+
+function playSFX(name) {
+  const sound = sounds[name]
+  if (sound) {
+      // cloneNode()로 복제본을 만들어서 재생 -> 겹침 가능
+      const clone = sound.cloneNode();
+      clone.volume = 0.8; // 효과음 볼륨
+      
+      // Promise 예외 처리
+      clone.play().catch(e => console.log("소리 재생 실패:", e));
+  }
+}
+
+
+function triggerVisualFeedback(isCorrect) {
+    const inputField = document.querySelector('.answer-container'); // 입력창 ID
+    
+    // 1. 기존 클래스 제거 (혹시 남아있을 수 있으니)
+    inputField.classList.remove('correct', 'wrong');
+
+    // 2. 상태에 따라 클래스 추가
+    if (isCorrect) {
+        inputField.classList.add('correct');
+    } else {
+        // 오답일 때는 애니메이션 재실행을 위해 '약간의 트릭'이 필요할 수 있음
+        // (void offsetWidth를 호출하면 리플로우가 발생해 애니메이션 리셋됨)
+        void inputField.offsetWidth; 
+        inputField.classList.add('wrong');
+    }
+
+    // 3. 1.5초 뒤에 원상복구 (다음 문제를 위해)
+    // 정답일 땐 다음 문제로 넘어가면서 자연스럽게 풀리게 둬도 되지만,
+    // 오답일 땐 다시 입력해야 하므로 빨리 풀어주는 게 좋음
+    const delay = isCorrect ? 2000 : 1000; 
+
+    setTimeout(() => {
+        inputField.classList.remove('correct', 'wrong');
+        
+        // (선택) 오답이면 입력창 비워주기
+        if (!isCorrect) {
+            inputField.value = ''; 
+            inputField.focus();
+        }
+    }, delay);
 }
