@@ -1,7 +1,7 @@
 import { startTimer, Shuffle, SolveOrNot } from "/utils/gamestart.js";
 import { CustomPlaylist } from "/Layout/custom.js";
 import { SearchModal } from "/Layout/searchModal.js";
-import { YearSelector } from "/Layout/yearSelector.js";
+import { YearSelector } from "/Layout/YearSelector.js";
 import { ArtistSelector } from "/Layout/ArtistSelector.js";
 import { YouTubeManager } from "/Layout/YoutubeManager.js";
 

@@ -27,8 +27,7 @@ const Header = `
       <li ><a href="/GAME/proverb/proverb.html">이어말하기: 속담</a></li>
       <li ><a href="/GAME/music/music.html">1초 음악퀴즈</a></li>
       <li ><a href="/GAME/lyrics/lyrics.html">가사 퀴즈</a></li>
-      <li ><a href="">OST 퀴즈(예정)</a></li>
-      <li ><a href="">뮤직 믹스 퀴즈(예정)</a></li>
+      <li ><a href="https://tvshowgame2.pages.dev/" target="_blank">AI 가사 퀴즈</a></li>
     </ul>
   </nav>
 `;
