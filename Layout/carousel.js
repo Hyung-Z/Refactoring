@@ -91,7 +91,6 @@ export class InfiniteCarousel {
         });
     }
 
-    // 애니메이션 없이 이동하는 내부 함수 (코드 중복 제거)
     moveSlideNone(index) {
         const amount = -1 * index * this.slideWidth;
         this.track.style.transform = `translateX(${amount}px)`;

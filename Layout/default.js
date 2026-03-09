@@ -34,10 +34,45 @@ const Header = `
 
 const Footer = `
   <footer>
+    <div class="ads-bottom pc">
+      <!-- 하단 -->
+      <ins class="adsbygoogle"
+          style="display:inline-block;width:728px;height:100px"
+          data-ad-client="ca-pub-4961528185865014"
+          data-ad-slot="3518599684"></ins>
+    </div>
+
+    <div class="ads-bottom mobile">
+      <!-- 모바일 하단 배너 -->
+      <ins class="adsbygoogle"
+          style="display:inline-block;width:300px;height:100px"
+          data-ad-client="ca-pub-4961528185865014"
+          data-ad-slot="2645973898"></ins>
+    </div>
+
     <p>@tvshowgame</p>
   </footer>
 `;
 
+const SideAD = `
+  <div class="left-ad">
+    <!-- 사이드2 -->
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:130px;height:700px"
+        data-ad-client="ca-pub-4961528185865014"
+        data-ad-slot="5172629531"></ins>
+  </div>
+`
+
+const SideAD2 = `
+<div class="right-ad">
+    <!-- 사이드바 -->
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:130px;height:700px"
+        data-ad-client="ca-pub-4961528185865014"
+        data-ad-slot="9187046100"></ins>
+  </div>
+`
 
 // 2. 페이지 로드 시 실행될 함수
 document.addEventListener("DOMContentLoaded", () => {
@@ -45,6 +80,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.insertAdjacentHTML("afterbegin", Header);
   // body 태그의 끝 부분에 푸터 추가
   document.body.insertAdjacentHTML("beforeend", Footer);
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    (window.adsbygoogle = window.adsbygoogle || []).push({}); // 하단 광고들 로드
+  } catch (e) { console.error(e); }
+
+  document.body.insertAdjacentHTML("beforeend", SideAD);
+  try {
+  (window.adsbygoogle = window.adsbygoogle || []).push({}); // 좌
+} catch (e) { console.error(e); }
+  document.body.insertAdjacentHTML("beforeend", SideAD2);
+
+  try {
+  (window.adsbygoogle = window.adsbygoogle || []).push({}); // 우
+} catch (e) { console.error(e); }
   const hamburgerBtn = document.querySelector('.hamburger');
   const sideMenu = document.querySelector('.side-menu');
   const backdrop = document.querySelector('.backdrop');

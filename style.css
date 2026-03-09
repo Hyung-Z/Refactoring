@@ -5,6 +5,32 @@
     background-color: #fff6ec;
 }
 
+.ads-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.pc {
+    display: none;
+}
+
+.mobile {
+    display: inline-block;
+}
+
+.left-ad, .right-ad {
+    display: none;
+    position: absolute;
+    top: 70px;
+    margin: 4px;
+}
+
+.right-ad {
+    right: 4px;
+}
+
 header {
     padding: 10px;
     font-size: 1.5rem;
@@ -154,6 +180,8 @@ header p a {
 
 footer {
     text-align: center;
+    bottom: 18px;
+    margin-top: 18px;
 }
 
 .back-home, .retry {
@@ -231,5 +259,19 @@ footer {
     .side-menu li {
         font-size: 20px;
         margin-inline-start: 40px;
+    }
+
+    .pc{
+        display: inline-block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 1300px) {
+    .left-ad, .right-ad{
+        display: inline-block;
     }
 }

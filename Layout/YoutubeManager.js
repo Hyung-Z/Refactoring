@@ -1,5 +1,5 @@
 export class YouTubeManager {
-  // 1. 초기화 시 '에러 발생하면 실행할 콜백 함수'를 받습니다.
+
   constructor(options = {}) {
     this.player = null;
     this.isReady = false;
@@ -53,14 +53,13 @@ export class YouTubeManager {
     });
   }
 
-  // ★ 3. 에러 핸들러
   handleError(event) {
     /*
          에러 코드 설명:
          2   : 잘못된 매개변수
          5   : HTML5 플레이어 에러
          100 : 영상이 없거나 비공개됨
-         101 : 퍼가기 금지 (저작권 등) - 가장 흔함
+         101 : 퍼가기 금지 (저작권 등)
          150 : 101과 같음
         */
     const errorCode = event.data;

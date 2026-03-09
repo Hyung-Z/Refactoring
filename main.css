@@ -101,6 +101,9 @@ h1 {
     display: none;
 }
 
+.left-ad, .right-ad {
+    display: none;
+}
 
 @media (min-width:768px) {
     .slide a{
